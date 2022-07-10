@@ -1,0 +1,36 @@
+<form class="box" (submit)="signup()">
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+            <input type="email" class="input form-control" placeholder="Email..." [formControl]="emailControl" />
+        </div>
+        <p *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="help is-danger">
+            Please provide valid email.
+        </p>
+    </div>
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+            <input type="password" class="input" placeholder="Password..." [formControl]="passwordControl" />
+        </div>
+        <p *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="help is-danger">
+            Please provide valid password which is at least 8 characters long.
+        </p>
+    </div>
+    <div class="field">
+        <label class="label">Confirm Password</label>
+        <div class="control">
+            <input type="password" class="input" placeholder="Confirm Password..." [formControl]="confirmPasswordControl" />
+        </div>
+        <p *ngIf="(confirmPasswordControl.value !== passwordControl.value || confirmPasswordControl.invalid) && (confirmPasswordControl.dirty || confirmPasswordControl.touched)" class="help is-danger">
+            Confirm password must match provided password.
+        </p>
+    </div>
+
+    <div class="field">
+        <button *ngIf="!loading" type="submit" class="button is-primary" [disabled]="!isValid()">Sign Up</button>
+        <button *ngIf="loading && !error" class="button is-loading is-primary" disabled></button>
+        <p *ngIf="error" class="help is-danger">An error has occurred. Please verify the email provided does not belong to an existing account. If this is a new account, please contact support.</p>
+    </div>
+</form>
+                    

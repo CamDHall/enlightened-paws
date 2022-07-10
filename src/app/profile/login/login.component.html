@@ -6,42 +6,42 @@
     <ng-template class="container" #showLogin>
         <h1 class="title is-1">Login</h1>
 
-        <form class="box">
+        <form class="box" (submit)="emailLogin()">
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
-                    <input type="email" class="input" placeholder="Email..." />            
+                    <input type="email" class="input form-control" placeholder="Email..." [formControl]="emailControl" />            
                 </div>
             </div>
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input type="password" class="input" placeholder="Password..." />
+                    <input type="password" class="input form-control" placeholder="Password..." [formControl]="passwordControl" />
                 </div>
             </div>
             <div class="field">
-                <button type="submit" class="button is-primary">Login</button>
+                <button *ngIf="!loading" type="submit" class="button is-primary" [disabled]="!isValid()">Login</button>
+                <button *ngIf="loading && !error" class="button is-loading is-primary" disabled></button>
+                <p *ngIf="error" class="help is-danger">An error has occurred. Please verify the email provided belongs to an existing account.</p>
             </div>
             <a href="/sign-up" class="button is-link is-light">Sign Up with Email</a>
         </form>
 
-        <h2 class="title is-2">Social</h2>
-
-        <div class="field is-grouped">
-            <button (click)="googleLogin()" class="button">
-                <span class="icon">
-                    <fa-icon [icon]="googleIcon" size="4x">Google</fa-icon>
-                </span>
+        <div class="box social">
+            <h3 class="title is-3">Social Login</h3>
+            <button (click)="googleLogin()" class="button block google">
+                <fa-icon [icon]="googleIcon" size="lg"></fa-icon>
+                Sign in with Google
             </button>
-            <button (click)="twitterLogin()">
-                <span class="icon">
-                    <fa-icon [icon]="twitterIcon" size="4x">Twitter</fa-icon>
-                </span>
+            <span class="spacer"></span>
+            <button (click)="twitterLogin()" class="button block twitter">
+                <fa-icon [icon]="twitterIcon" size="lg"></fa-icon>
+                Sign in with Twitter
             </button>
-            <button (click)="facebookLogin()" class="button">
-                <span class="icon">
-                    <fa-icon [icon]="fbIcon" size="4x">Facebook</fa-icon>
-                </span>
+            <span class="spacer"></span>
+            <button (click)="facebookLogin()" class="button block fb">
+                <fa-icon [icon]="fbIcon" size="lg"></fa-icon>
+                Sign in with Facebook
             </button>
         </div>
     </ng-template>
