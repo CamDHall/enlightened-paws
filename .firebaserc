@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "enlightened-paws": {
+      "hosting": {
+        "enlightened-paws": [
+          "enlightened-paws"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "enlightened-paws"
+  }
+}

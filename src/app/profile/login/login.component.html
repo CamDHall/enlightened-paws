@@ -1,0 +1,48 @@
+<section class="container">
+    <div *ngIf="auth.user | async as user; else showLogin">
+        <h1>Hello {{ user.displayName }}!</h1>
+        <button (click)="logout()">Logout</button>
+    </div>
+    <ng-template class="container" #showLogin>
+        <h1 class="title is-1">Login</h1>
+
+        <form class="box">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input type="email" class="input" placeholder="Email..." />            
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input type="password" class="input" placeholder="Password..." />
+                </div>
+            </div>
+            <div class="field">
+                <button type="submit" class="button is-primary">Login</button>
+            </div>
+            <a href="/sign-up" class="button is-link is-light">Sign Up with Email</a>
+        </form>
+
+        <h2 class="title is-2">Social</h2>
+
+        <div class="field is-grouped">
+            <button (click)="googleLogin()" class="button">
+                <span class="icon">
+                    <fa-icon [icon]="googleIcon" size="4x">Google</fa-icon>
+                </span>
+            </button>
+            <button (click)="twitterLogin()">
+                <span class="icon">
+                    <fa-icon [icon]="twitterIcon" size="4x">Twitter</fa-icon>
+                </span>
+            </button>
+            <button (click)="facebookLogin()" class="button">
+                <span class="icon">
+                    <fa-icon [icon]="fbIcon" size="4x">Facebook</fa-icon>
+                </span>
+            </button>
+        </div>
+    </ng-template>
+</section>
