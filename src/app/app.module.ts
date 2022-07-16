@@ -18,12 +18,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile/profile.component';
+import { HomeComponent } from './home/home/home.component';
+import { UserDetailsComponent } from './profile/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ProfileComponent,
+    HomeComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
