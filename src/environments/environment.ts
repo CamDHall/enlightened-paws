@@ -11,7 +11,8 @@ export const environment = {
     authDomain: 'enlightened-paws.firebaseapp.com',
     messagingSenderId: '387054312601',
   },
-  production: false
+  production: false,
+  useEmulators: true
 };
 
 /*
