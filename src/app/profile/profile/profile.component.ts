@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     const temp = callable({});
     temp.subscribe(data => {
       console.log(data);
-    })
+    });
   }
 
   logout() {
