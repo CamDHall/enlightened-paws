@@ -5,12 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth, connectAuthEmulator } from '@angular/fire/auth';
-import { provideFunctions,getFunctions } from '@angular/fire/functions';
-import { provideMessaging,getMessaging } from '@angular/fire/messaging';
-import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+
 import { LoginComponent } from './profile/login/login.component';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -29,6 +24,7 @@ import { AngularFirestoreModule, USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '
 import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
 import { ORIGIN as FUNCTIONS_ORIGIN } from '@angular/fire/compat/functions';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
+import { UserDetailsFormComponent } from './forms/user-details-form/user-details-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +33,8 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
     SignUpComponent,
     ProfileComponent,
     HomeComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserDetailsFormComponent
   ],
   imports: [
     BrowserModule,

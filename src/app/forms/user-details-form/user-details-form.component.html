@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Name..." formControlName="name" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Phone</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Phone..." formControlName="phone" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Address</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Address..." formControlName="address1" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Address #2</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Address 2..." formControlName="address2" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">City</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="City..." formControlName="city" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">State</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="State..." formControlName="state" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Zip Code</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Zip Code..." formControlName="zipCode" />
+        </div>
+    </div>
+    <div class="field">
+        <button *ngIf="!loading" type="submit" class="button is-primary" [disabled]="form.invalid || !form.touched">Save</button>
+        <button *ngIf="loading && !error" class="button is-loading is-primary" disabled></button>
+        <p *ngIf="error" class="help is-danger">An error has occurred. Please contact support.</p>
+    </div>
+</form>

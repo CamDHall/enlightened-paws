@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,7 +29,7 @@ export class SignUpComponent implements OnInit {
     loading = false;
     error = false;
 
-  constructor(public auth: AngularFireAuth, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,8 +44,7 @@ export class SignUpComponent implements OnInit {
     this.loading = true;
 
     try {
-      await this.auth.createUserWithEmailAndPassword(this.emailControl.value!, this.passwordControl.value!);
-
+      await this.authService.signup(this.emailControl.value!, this.passwordControl.value!);
       this.loading = false;
       this.error = false;
       this.router.navigate(['/']);

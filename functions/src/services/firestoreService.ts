@@ -2,27 +2,41 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable require-jsdoc */
 /* eslint-disable max-len */
-import {firestore} from "firebase-admin";
+import * as admin from "firebase-admin";
+
+// user const
+// const userCollectionName = "users";
+admin.initializeApp();
+const db = admin.firestore();
 
 export namespace FirestoreService {
-    export async function create(db: firestore.Firestore, collectionName: string, redcordId: string, data: any = {}) {
+
+    export async function createDoc(collectionName: string, redcordId: string, data: any = {}) {
       await db
           .collection(collectionName)
           .doc(redcordId)
           .create(data);
     }
 
-    export async function update(db: firestore.Firestore, collectionName: string, redcordId: string, data: any = false) {
+    export async function updateDoc(collectionName: string, redcordId: string, data: any) {
       await db
           .collection(collectionName)
           .doc(redcordId)
           .set(data);
     }
 
-    export async function deleteDoc(db: firestore.Firestore, collectionName: string, redcordId: string) {
+    export async function deleteDoc(collectionName: string, redcordId: string) {
       await db
           .collection(collectionName)
           .doc(redcordId)
           .delete();
+    }
+
+    export async function getDoc(collectionName: string, redcordId: string) {
+      return (await db
+          .collection(collectionName)
+          .doc(redcordId)
+          .get())
+          .data();
     }
 }

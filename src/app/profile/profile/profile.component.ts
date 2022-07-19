@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/models/User';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +10,21 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
+  loading = true;
+  user: User | null = null;
 
-  constructor(public auth: AngularFireAuth, private authService: AuthService, private fns: AngularFireFunctions) { }
+  constructor(private authService: AuthService, private userService: UserService, private fns: AngularFireFunctions) { }
 
   ngOnInit(): void {
-    const callable = this.fns.httpsCallable('userDetails');
-    const temp = callable({});
-    temp.subscribe(data => {
-      console.log(data);
+    this.userService.user.subscribe((user: User | null) => {
+      this.user = user;
+
+      if(user !== null) {
+        this.loading = false;
+      }
     });
+  
+    this.userService.getUserDetails();
   }
 
   logout() {

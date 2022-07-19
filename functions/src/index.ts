@@ -1,30 +1,34 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 import * as functions from "firebase-functions";
 import {AuthData} from "firebase-functions/lib/common/providers/tasks";
 
-import * as admin from "firebase-admin";
 import {UserRecord} from "firebase-functions/v1/auth";
 import {FirestoreService} from "./services/firestoreService";
 
+const usersCollectionName = "users";
 
-admin.initializeApp();
-const db = admin.firestore();
-
-export const userDetails = functions.https.onCall(async (data, context) => {
-  functions.logger.info("userDetails", data);
+export const getUserDetails = functions.https.onCall(async (data, context) => {
+  functions.logger.info("getUserDetails", data);
   await authorization(context.auth);
+
+  return await FirestoreService.getDoc(usersCollectionName, context.auth!.uid);
+});
+
+export const postUserDetails = functions.https.onCall(async (data, context) => {
+  functions.logger.info("postUserDetails", data);
+  await authorization(context.auth);
+
+  return await FirestoreService.updateDoc(usersCollectionName, context.auth!.uid, data);
 });
 
 exports.userCreation = functions.auth.user().onCreate(async (user: UserRecord) => {
-  await FirestoreService.create(db, "users", user.uid);
-  // await db
-  //     .collection("users")
-  //     .doc(user.uid)
-  //     .create({})
-  //     .catch((error) => {
-  //         functions.logger.error("CreateUser Error: ", error)
-  //     });
+  await FirestoreService.createDoc(usersCollectionName, user.uid);
+});
+
+exports.userDeletion = functions.auth.user().onDelete(async (user: UserRecord) => {
+  await FirestoreService.deleteDoc(usersCollectionName, user.uid);
 });
 
 async function authorization(authData?: AuthData) {

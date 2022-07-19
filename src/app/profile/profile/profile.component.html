@@ -1,1 +1,9 @@
-<button (click)="logout()">Logout</button>
+<div *ngIf="loading; else profile" class="whole-page-loading">
+    <progress class="progress is-large is-primary" max="100">15%</progress>
+</div>
+
+<ng-template #profile>
+    <app-user-details-form *ngIf="user === null" [user]="user"></app-user-details-form>
+
+    <button (click)="logout()">Logout</button>
+</ng-template>
