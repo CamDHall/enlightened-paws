@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Name..." formControlName="name" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Breed</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Breed..." formControlName="breed" />
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Age</label>
+        <div class="control">
+            <input type="text" class="input form-control" placeholder="Age..." formControlName="age" />
+        </div>
+    </div>
+    <div class="field">
+        <button *ngIf="!loading" type="submit" class="button is-primary" [disabled]="form.invalid || !form.touched">Save</button>
+        <button *ngIf="dog !== null" class="button" (click)="close()" type="button">Cancel</button>
+        <button *ngIf="loading && !error" class="button is-loading is-primary" disabled></button>
+        <p *ngIf="error" class="help is-danger">An error has occurred. Please contact support.</p>
+    </div>
+</form>

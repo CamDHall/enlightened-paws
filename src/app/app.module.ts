@@ -25,6 +25,8 @@ import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/fun
 import { ORIGIN as FUNCTIONS_ORIGIN } from '@angular/fire/compat/functions';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { UserDetailsFormComponent } from './forms/user-details-form/user-details-form.component';
+import { DogFormComponent } from './forms/dog-form/dog-form.component';
+import { DogComponent } from './dog/dog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { UserDetailsFormComponent } from './forms/user-details-form/user-details
     ProfileComponent,
     HomeComponent,
     UserDetailsComponent,
-    UserDetailsFormComponent
+    UserDetailsFormComponent,
+    DogFormComponent,
+    DogComponent
   ],
   imports: [
     BrowserModule,

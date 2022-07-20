@@ -12,6 +12,10 @@ import { User } from 'src/models/User';
 export class ProfileComponent implements OnInit {
   loading = true;
   user: User | null = null;
+  editForm = false;
+  newDogFormOpen = false;
+
+  counter: number = 0;
 
   constructor(private authService: AuthService, private userService: UserService, private fns: AngularFireFunctions) { }
 
@@ -19,12 +23,21 @@ export class ProfileComponent implements OnInit {
     this.userService.user.subscribe((user: User | null) => {
       this.user = user;
 
-      if(user !== null) {
-        this.loading = false;
-      }
+      this.editForm = this.user === null;
+
+      this.loading = this.counter === 0 ? true : false;
+      this.counter++;
     });
   
     this.userService.getUserDetails();
+  }
+
+  toggleEditForm(shouldClose: boolean) {
+    this.editForm = shouldClose;
+  }
+
+  toggleDogForm(isOpen: boolean) {
+    this.newDogFormOpen = isOpen;
   }
 
   logout() {

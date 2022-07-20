@@ -3,7 +3,13 @@
 </div>
 
 <ng-template #profile>
-    <app-user-details-form *ngIf="user === null" [user]="user"></app-user-details-form>
+    <app-user-details-form *ngIf="editForm" [user]="user" (closeForm)="toggleEditForm($event)"></app-user-details-form>
 
+    <div *ngIf="user !== null;">
+        <button *ngIf="!editForm" class="button is-primary" (click)="toggleEditForm(true)">Edit Profile</button>
+        <button class="button is-primary" (click)="toggleDogForm(true)">Add Dog</button>
+
+        <app-dog-form *ngIf="newDogFormOpen" (isOpen)="toggleDogForm($event)"></app-dog-form>
+    </div>
     <button (click)="logout()">Logout</button>
 </ng-template>

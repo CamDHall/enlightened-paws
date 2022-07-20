@@ -43,6 +43,7 @@
     </div>
     <div class="field">
         <button *ngIf="!loading" type="submit" class="button is-primary" [disabled]="form.invalid || !form.touched">Save</button>
+        <button *ngIf="user !== null" class="button" (click)="cancel()" type="button">Cancel</button>
         <button *ngIf="loading && !error" class="button is-loading is-primary" disabled></button>
         <p *ngIf="error" class="help is-danger">An error has occurred. Please contact support.</p>
     </div>

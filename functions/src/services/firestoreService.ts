@@ -32,6 +32,33 @@ export namespace FirestoreService {
           .delete();
     }
 
+    // Subcollections
+    export async function createSubDoc(oarentCollectionName: string, childCollectionName: string, parentRecordId: string, data: any) {
+      await db
+          .collection(oarentCollectionName)
+          .doc(parentRecordId)
+          .collection(childCollectionName)
+          .add(data);
+    }
+
+    export async function updateSubDoc(oarentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string, data: any) {
+      await db
+          .collection(oarentCollectionName)
+          .doc(parentRecordId)
+          .collection(childCollectionName)
+          .doc(childRecordId)
+          .set(data);
+    }
+
+    export async function deleteSubDoc(oarentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string) {
+      await db
+          .collection(oarentCollectionName)
+          .doc(parentRecordId)
+          .collection(childCollectionName)
+          .doc(childRecordId)
+          .delete();
+    }
+
     export async function getDoc(collectionName: string, redcordId: string) {
       return (await db
           .collection(collectionName)

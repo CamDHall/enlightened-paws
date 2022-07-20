@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { faTachographDigital } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/models/User';
 
@@ -14,11 +15,16 @@ export class UserDetailsFormComponent implements OnInit {
   error = false;
 
   @Input("user") user: User | null = null;
+  @Output("closeForm") closeForm = new EventEmitter<boolean>();
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.buildForm();
+  }
+
+  cancel() {
+    this.closeForm.next(false);
   }
 
   buildForm() {
