@@ -51,6 +51,7 @@ export class DogFormComponent implements OnInit {
   }
 
   close() {
+    this.dogService.getDogs();
     this.loading = false;
     this.isOpen.next(false);
   }

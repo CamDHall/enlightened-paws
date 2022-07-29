@@ -10,6 +10,8 @@
         <button class="button is-primary" (click)="toggleDogForm(true)">Add Dog</button>
 
         <app-dog-form *ngIf="newDogFormOpen" (isOpen)="toggleDogForm($event)"></app-dog-form>
+
+        <app-dogs></app-dogs>
     </div>
     <button (click)="logout()">Logout</button>
 </ng-template>

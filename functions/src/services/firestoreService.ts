@@ -3,7 +3,6 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable max-len */
 import * as admin from "firebase-admin";
-
 // user const
 // const userCollectionName = "users";
 admin.initializeApp();
@@ -50,13 +49,16 @@ export namespace FirestoreService {
           .set(data);
     }
 
-    export async function deleteSubDoc(oarentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string) {
-      await db
-          .collection(oarentCollectionName)
+    export async function deleteSubDoc(parentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string, whereFieldName = "name") {
+      const ref = await db
+          .collection(parentCollectionName)
           .doc(parentRecordId)
           .collection(childCollectionName)
-          .doc(childRecordId)
-          .delete();
+          .listDocuments();
+
+      ref.forEach((element) => {
+        element.delete();
+      });
     }
 
     export async function getDoc(collectionName: string, redcordId: string) {
@@ -65,5 +67,15 @@ export namespace FirestoreService {
           .doc(redcordId)
           .get())
           .data();
+    }
+
+    export async function getSubCollection(parentCollection: string, childCollectionName: string, redcordId: string) {
+      const snapshot = await db
+          .collection(parentCollection)
+          .doc(redcordId)
+          .collection(childCollectionName)
+          .get();
+
+      return snapshot.docs.map((doc) => doc.data());
     }
 }

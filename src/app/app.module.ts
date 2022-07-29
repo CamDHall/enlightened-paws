@@ -27,6 +27,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { UserDetailsFormComponent } from './forms/user-details-form/user-details-form.component';
 import { DogFormComponent } from './forms/dog-form/dog-form.component';
 import { DogComponent } from './dog/dog.component';
+import { DogsComponent } from './dogs/dogs.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DogComponent } from './dog/dog.component';
     UserDetailsComponent,
     UserDetailsFormComponent,
     DogFormComponent,
-    DogComponent
+    DogComponent,
+    DogsComponent
   ],
   imports: [
     BrowserModule,

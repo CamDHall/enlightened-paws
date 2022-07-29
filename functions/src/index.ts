@@ -30,7 +30,6 @@ export const addDog = functions.https.onCall(async (data, context) => {
   functions.logger.info("addDog", data);
   await authorization(context.auth);
 
-  console.log(context.auth?.uid)
   return FirestoreService.createSubDoc(usersCollectionName, dogSubCollectionName, context.auth!.uid, data);
 });
 
@@ -49,6 +48,13 @@ export const deleteDog = functions.https.onCall(async (data, context) => {
     throw new Error("dogId cannot be empty or null");
   }
   return FirestoreService.deleteSubDoc(usersCollectionName, dogSubCollectionName, context.auth!.uid, data);
+});
+
+export const getDogs = functions.https.onCall(async (data, context) => {
+  functions.logger.info("getDogs", data);
+  await authorization(context.auth);
+
+  return FirestoreService.getSubCollection(usersCollectionName, dogSubCollectionName, context.auth!.uid);
 });
 
 // Triggers

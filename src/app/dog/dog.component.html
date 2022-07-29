@@ -1,1 +1,23 @@
-<p>dog works!</p>
+<app-dog-form [dog]="dog" *ngIf="isOpen; else card" (isOpen)="toggleEdit()"></app-dog-form>
+<ng-template #card>
+    <div class="card">
+        <div class="card-header buttons are-small">
+            <p class="card-header-title">
+                {{dog.name}}
+            </p>
+        </div>
+        <div class="card-content">
+            <p><b>Breed:</b> {{ dog.breed }}</p>
+            <p><b>Age:</b> {{ dog.age }}</p>
+            
+            <h3 class="mt-4 mb-0 subtitle is-4">Coming soon...</h3>
+            <p>Sessions</p>
+            <p>Photos</p>
+            <p>Videos</p>
+        </div>
+        <footer class="card-footer p-2">
+            <button class="button is-primary is-light mr-4" (click)="toggleEdit()">Edit</button>
+            <button class="button is-light" (click)="deleteDog()">Remove</button>
+        </footer>
+    </div>
+</ng-template>
