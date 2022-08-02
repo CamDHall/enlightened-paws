@@ -49,15 +49,16 @@ export namespace FirestoreService {
           .set(data);
     }
 
-    export async function deleteSubDoc(parentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string, whereFieldName = "name") {
+    export async function deleteSubDoc(parentCollectionName: string, childCollectionName: string, parentRecordId: string, childRecordId: string) {
       const ref = await db
           .collection(parentCollectionName)
           .doc(parentRecordId)
           .collection(childCollectionName)
-          .listDocuments();
+          .where("name", "==", childRecordId)
+          .get();
 
       ref.forEach((element) => {
-        element.delete();
+        element.ref.delete();
       });
     }
 

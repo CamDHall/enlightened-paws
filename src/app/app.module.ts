@@ -28,6 +28,7 @@ import { UserDetailsFormComponent } from './forms/user-details-form/user-details
 import { DogFormComponent } from './forms/dog-form/dog-form.component';
 import { DogComponent } from './dog/dog.component';
 import { DogsComponent } from './dogs/dogs.component';
+import { ConfirmationComponent } from './modals/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DogsComponent } from './dogs/dogs.component';
     UserDetailsFormComponent,
     DogFormComponent,
     DogComponent,
-    DogsComponent
+    DogsComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

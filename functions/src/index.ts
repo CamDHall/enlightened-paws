@@ -77,7 +77,6 @@ async function authorization(authData?: AuthData) {
 function extractSubRecordIdFromData(data: any) {
   try {
     const recordId = data["id"];
-    console.log(data);
 
     if (recordId === undefined || recordId === null || recordId == "") {
       throw new Error("subId cannot be empty or null");

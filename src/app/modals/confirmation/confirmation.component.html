@@ -1,0 +1,15 @@
+<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Confirm?</p>
+      </header>
+      <section class="modal-card-body">
+        <p class="is-danger">This action cannot be reversed.</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="emitDecision(true)">Confirm</button>
+        <button class="button" (click)="emitDecision(false)">Cancel</button>
+      </footer>
+    </div>
+  </div>

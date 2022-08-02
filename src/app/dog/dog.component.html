@@ -17,7 +17,9 @@
         </div>
         <footer class="card-footer p-2">
             <button class="button is-primary is-light mr-4" (click)="toggleEdit()">Edit</button>
-            <button class="button is-light" (click)="deleteDog()">Remove</button>
+            <button class="button is-light" (click)="toggleConfirmation()">Remove</button>
         </footer>
     </div>
 </ng-template>
+
+<app-confirmation *ngIf="confirmationIsOpen" (confirmDecision)="handleDecision($event)"></app-confirmation>
